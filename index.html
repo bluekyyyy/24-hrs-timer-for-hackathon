@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZER0X HACKATHON — OWASP Sathyabama</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="bg-grid"></div>
+  <div id="scanlines"></div>
+  <div id="vignette"></div>
+  <div id="flash"></div>
+
+  <!-- CORNER LOGOS -->
+  <div class="corner-logo" id="logo-college">
+    <img src="/logo.png" alt="Sathyabama" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-placeholder" style="display:none">COLLEGE LOGO</div>
+  </div>
+  <div class="corner-logo" id="logo-owasp">
+    <img src="/1_MFlAPjhdTE_AISAdgrBncQ.jpg" alt="OWASP" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-placeholder" style="display:none">OWASP LOGO</div>
+  </div>
+
+  <!-- HEADER -->
+  <div id="header" style="display:none">
+    <div class="owasp-line">OWASP Student Chapter · Sathyabama University</div>
+    <div class="zerox-line">ZER0X HACKATHON</div>
+    <div class="sub-line">26 JUNE 2026 &nbsp;·&nbsp; NEXUS HUB &nbsp;·&nbsp; 24 HRS</div>
+  </div>
+
+  <!-- STAGE -->
+  <div id="stage">
+
+    <!-- STATE 0: TIMER SETUP -->
+    <div id="state-timer-setup">
+      <div class="setup-eyebrow">OWASP STUDENT CHAPTER · SATHYABAMA UNIVERSITY</div>
+      <div class="setup-title">ZER0X <span>HACKATHON</span></div>
+      <div class="setup-card">
+        <div class="setup-card-label">⏱ SET HACKATHON DURATION</div>
+        <div class="setup-inputs">
+          <div class="setup-field">
+            <label>HOURS</label>
+            <input class="setup-input" id="setup-h" type="number" min="0" max="99" value="24" oninput="updatePreview()">
+          </div>
+          <span class="setup-colon">:</span>
+          <div class="setup-field">
+            <label>MINUTES</label>
+            <input class="setup-input" id="setup-m" type="number" min="0" max="59" value="00" oninput="updatePreview()">
+          </div>
+          <span class="setup-colon">:</span>
+          <div class="setup-field">
+            <label>SECONDS</label>
+            <input class="setup-input" id="setup-s" type="number" min="0" max="59" value="00" oninput="updatePreview()">
+          </div>
+        </div>
+        <div class="setup-presets">
+          <button class="preset-btn" onclick="setPreset(24,0,0)">24 HRS</button>
+          <button class="preset-btn" onclick="setPreset(12,0,0)">12 HRS</button>
+          <button class="preset-btn" onclick="setPreset(6,0,0)">6 HRS</button>
+          <button class="preset-btn" onclick="setPreset(1,0,0)">1 HR</button>
+          <button class="preset-btn" onclick="setPreset(0,1,0)">1 MIN</button>
+          <button class="preset-btn" onclick="setPreset(0,0,30)">30 SEC</button>
+        </div>
+        <div class="setup-preview" id="setup-preview">DURATION: 24 HOURS</div>
+        <button id="btn-confirm-timer" onclick="confirmTimer()">⚡ CONFIRM &amp; PROCEED</button>
+      </div>
+    </div>
+
+    <!-- STATE 1: STANDBY -->
+    <div id="state-standby" style="display:none">
+      <div class="zerox-hero-wrap">
+        <span class="zerox-ghost-r">ZER0X</span>
+        <span class="zerox-ghost-c">ZER0X</span>
+        <div class="standby-zerox">ZER0X</div>
+        <span class="zerox-glitch-slice">ZER0X</span>
+      </div>
+      <div>
+        <div class="standby-title">HACKATHON <span>AWAITS</span></div>
+        <div class="standby-sub">SYSTEM STANDBY — AWAITING OPERATOR INPUT</div>
+      </div>
+      <div class="date-badge">26 · JUNE · 2026</div>
+      <button id="btn-start" onclick="startPreCountdown()">⚡ INITIATE HACKATHON</button>
+    </div>
+
+    <!-- STATE 2: PRE COUNTDOWN -->
+    <div id="state-pre" style="display:none">
+      <div id="pre-number" data-val="5">5</div>
+      <div id="pre-label">INITIATING</div>
+    </div>
+
+    <!-- STATE 3: ACTIVE TIMER -->
+    <div id="state-active" style="display:none">
+      <div class="active-label">HACKATHON IN PROGRESS</div>
+      <div id="timer-display">
+        <span id="t-h">24</span><span class="timer-colon">:</span><span id="t-m">00</span><span class="timer-colon">:</span><span id="t-s">00</span>
+      </div>
+      <div class="timer-labels">
+        <span>HOURS</span><span>MINUTES</span><span>SECONDS</span>
+      </div>
+      <div id="progress-wrap"><div id="progress-bar"></div></div>
+    </div>
+
+    <!-- STATE 3b: FINAL COUNTDOWN -->
+    <div id="state-final" style="display:none">
+      <div id="final-number" data-val="10">10</div>
+      <div id="final-label">FINAL COUNTDOWN</div>
+    </div>
+
+    <!-- STATE 4: COMPLETE -->
+    <div id="state-complete" style="display:none">
+      <div id="complete-text">HACKATHON&#10;COMPLETE</div>
+      <div id="complete-sub">// SESSION TERMINATED //</div>
+      <div class="complete-tagline">ZER0X HACKATHON · OWASP SATHYABAMA · 26 JUNE 2026</div>
+    </div>
+
+  </div><!-- /stage -->
+
+  <!-- SPONSOR MARQUEE -->
+  <div id="marquee-wrap">
+    <div id="marquee-track"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
